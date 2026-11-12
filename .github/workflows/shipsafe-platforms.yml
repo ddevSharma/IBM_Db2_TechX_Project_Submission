@@ -1,0 +1,53 @@
+name: ShipSafe on macOS and Linux
+
+on:
+  workflow_dispatch:
+  push:
+    branches: [ci/shipsafe-platforms]
+
+permissions:
+  contents: read
+
+jobs:
+  smoke:
+    name: ${{ matrix.os }}
+    strategy:
+      fail-fast: false
+      matrix:
+        os: [macos-15, macos-15-intel, ubuntu-latest]
+    runs-on: ${{ matrix.os }}
+    timeout-minutes: 40
+    defaults:
+      run:
+        working-directory: submissions/shipsafe-ai/extension
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+      - uses: actions/setup-node@v4
+        with:
+          node-version: "20"
+      - name: Extension unit tests
+        run: npm ci && npm test
+      - name: Onboarding as a new user (engine from the live site, MCP check)
+        run: node scripts/platform-smoke.js "$RUNNER_TEMP/shipsafe-engine"
+      - name: Claude Code pre-write hook blocks a dangerous write
+        run: |
+          PY="$RUNNER_TEMP/shipsafe-engine/venv/bin/python"
+          printf '%s' '{"tool_name":"Write","cwd":"'"$RUNNER_TEMP"'","tool_input":{"file_path":"deploy.py","content":"import subprocess\nsubprocess.run(input(), shell=True)\n"}}' > event.json
+          set +e
+          "$PY" -m shipsafe.cli guard-hook < event.json 2> hook.err
+          code=$?
+          set -e
+          cat hook.err
+          test "$code" = "2"
+      - name: CLI check exits 1 on a blocked file
+        run: |
+          PY="$RUNNER_TEMP/shipsafe-engine/venv/bin/python"
+          printf 'import subprocess\nsubprocess.run(input(), shell=True)\n' > bad.py
+          set +e
+          "$PY" -m shipsafe.cli check bad.py
+          code=$?
+          set -e
+          test "$code" = "1"
