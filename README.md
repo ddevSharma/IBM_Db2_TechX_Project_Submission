@@ -1,3 +1,29 @@
+<div align="center">
+
+## ShipSafe for IBM Bob: this fork's Db2Hack submission
+
+**Your AI writes the code. ShipSafe makes it shippable.**
+
+An MCP add-on for IBM Bob and any AI IDE: checks code before it is written, fixes it with local IBM Granite
+and proves the fix, validates SQL against your real IBM Db2, and remembers team decisions in Db2 vectors.
+
+**[Live site and downloads](https://shipsafe-bob.vercel.app)** ·
+**[Project folder](https://github.com/ddevSharma/IBM_Db2_TechX_Project_Submission/tree/submission/shipsafe-ai/submissions/shipsafe-ai)** ·
+**[Pull request #92](https://github.com/KunalGolaIBM/IBM_Db2_TechX_Project_Submission/pull/92)** ·
+**[Landing page source](https://github.com/ddevSharma/IBM_Db2_TechX_Project_Submission_ShipSafe_AI_Landing_Page)**
+
+[![ShipSafe landing page](https://raw.githubusercontent.com/ddevSharma/IBM_Db2_TechX_Project_Submission_ShipSafe_AI_Landing_Page/main/docs/screenshots/hero.png)](https://shipsafe-bob.vercel.app)
+
+</div>
+
+| ShipSafe inside IBM Bob | Blocking an SQL injection before it is written |
+|---|---|
+| ![ShipSafe in IBM Bob](https://raw.githubusercontent.com/ddevSharma/IBM_Db2_TechX_Project_Submission/submission/shipsafe-ai/submissions/shipsafe-ai/docs/screenshots/ide-bob.png) | ![shipsafe check](https://raw.githubusercontent.com/ddevSharma/IBM_Db2_TechX_Project_Submission/submission/shipsafe-ai/submissions/shipsafe-ai/docs/screenshots/cli-check.png) |
+| **Granite fix, verified by the same checks** | **SQL checked by PREPARE on the real Db2** |
+| ![shipsafe fix](https://raw.githubusercontent.com/ddevSharma/IBM_Db2_TechX_Project_Submission/submission/shipsafe-ai/submissions/shipsafe-ai/docs/screenshots/cli-fix.png) | ![shipsafe sql](https://raw.githubusercontent.com/ddevSharma/IBM_Db2_TechX_Project_Submission/submission/shipsafe-ai/submissions/shipsafe-ai/docs/screenshots/cli-sql.png) |
+
+---
+
 # IBM Db2 TechX Summit 2026 — Project Submissions
 
 Welcome to the official hackathon project submissions repository for the **IBM Db2 TechX Summit 2026** and the **Db2Hack 24-Hour Challenge**, hosted at **GL Bajaj Group of Institutions, Mathura**, in association with **IBM**, **Institution's Innovation Council (IIC)**, and **NexaSphere**.
