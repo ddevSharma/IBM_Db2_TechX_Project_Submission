@@ -27,7 +27,7 @@ jobs:
           python-version: "3.12"
       - uses: actions/setup-node@v4
         with:
-          node-version: "20"
+          node-version: "22"
       - name: Extension unit tests
         run: npm ci && npm test
       - name: Onboarding as a new user (engine from the live site, MCP check)
